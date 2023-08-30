@@ -11,13 +11,9 @@ sequenceDiagram
     participant HMRC as HMRC
 
     Scheduler->>Lambda: Trigger at 08:00 AM
-    Lambda->>API: GET XML file from\nhttps://webservices.hmrc.gov.uk/taric/2022-05-14_TGB22134.xml
+    Lambda->>API: GET XML file from https://webservices.hmrc.gov.uk/taric/2022-05-14_TGB22134.xml
     API-->>Lambda: XML file data
-    alt Certificates Found
-        Lambda->>Lambda: Extract certificate updates from XML
-        Lambda->>SES: Compose HTML email\nwith update content
-        SES->>HMRC: Send HTML email
-    else No Certificates
-        Lambda-->>Lambda: No certificates found
-    end
+    Lambda->>Lambda: Extract certificate updates from XML
+    Lambda->>SES: Compose HTML email with certificate update content
+    SES->>HMRC: Send HTML email
 ```
