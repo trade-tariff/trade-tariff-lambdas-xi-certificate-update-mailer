@@ -1,0 +1,18 @@
+service: trade-tariff-lambdas-xi-certificate-update-mailer
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  region: eu-west-2
+  runtime: go1.x
+
+package:
+  patterns:
+    - "!./**"
+    - ./bin/**
+
+functions:
+  notifier:
+    handler: bin/notify
+    events:
+      - schedule: cron(0 8 * * ? *) # Run every day at 0800 UTC
