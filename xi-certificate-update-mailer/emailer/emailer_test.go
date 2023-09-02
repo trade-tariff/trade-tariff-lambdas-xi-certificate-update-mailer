@@ -20,7 +20,7 @@ func (m *mockSESClient) SendEmail(input *ses.SendEmailInput) (*ses.SendEmailOutp
 }
 
 func setup() {
-	logger.Initialize()
+	logger.Log = &logger.MockLogger{}
 
 	os.Setenv("FROM_EMAIL", "Online Trade Tariff Support <trade-tariff-support@enginegroup.com>")
 	os.Setenv("TO_EMAILS", "Bob Dylan <recipient1@example.com>,Nina Simmone <recipient2@example.com>")

@@ -40,7 +40,6 @@ func initializeEnvironment() {
 	if err != nil {
 		logger.Log.Fatal("Error loading .env file")
 	}
-	logger.Initialize()
 }
 
 func initializeAWSSession() *session.Session {

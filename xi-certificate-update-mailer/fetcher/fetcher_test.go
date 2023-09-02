@@ -14,7 +14,7 @@ import (
 )
 
 func setup() {
-	logger.Initialize()
+	logger.Log = &logger.MockLogger{}
 }
 
 type mockS3Client struct {

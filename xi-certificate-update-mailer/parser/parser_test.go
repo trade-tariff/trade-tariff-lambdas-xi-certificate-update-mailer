@@ -6,7 +6,12 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/trade-tariff/trade-tariff-lambdas-xi-certificate-update-mailer/fetcher"
+	"github.com/trade-tariff/trade-tariff-lambdas-xi-certificate-update-mailer/logger"
 )
+
+func setup() {
+	logger.Log = &logger.MockLogger{}
+}
 
 func loadTestFile(filename string) *fetcher.XmlFile {
 	content, _ := os.ReadFile(filename)
