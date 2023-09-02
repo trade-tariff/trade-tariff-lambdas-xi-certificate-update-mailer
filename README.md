@@ -6,12 +6,12 @@ Scheduled go lambda function to notify HMRC CUPID team when certificates on the 
 sequenceDiagram
     participant Scheduler as Scheduler
     participant Lambda as Lambda
-    participant API as API
+    participant S3 Bucket as S3 Bucket
     participant SES as SES
     participant HMRC as HMRC
 
     Scheduler->>Lambda: Trigger at 08:00 AM
-    Lambda->>API: GET XML file from https://webservices.hmrc.gov.uk/taric/2022-05-14_TGB22134.xml
+    Lambda->>S3 Bucket: GET XML file from S3 Bucket
     API-->>Lambda: XML file data
     Lambda->>Lambda: Extract certificate updates from XML
     Lambda->>SES: Compose HTML email with certificate update content
