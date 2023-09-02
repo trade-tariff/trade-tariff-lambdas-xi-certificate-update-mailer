@@ -16,6 +16,14 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var defaultConfig = map[string]string{
+	"BUCKET_NAME":   "trade-tariff-persistence-production",
+	"BUCKET_PREFIX": "data/taric",
+	"DEBUG":         "false",
+	"FROM_EMAIL":    "Online Trade Tariff Support <trade-tariff-support@enginegroup.com>",
+	"TO_EMAILS":     "William Fish <william.fish@digital.hmrc.gov.uk>",
+}
+
 func main() {
 	initializeEnvironment()
 
@@ -36,9 +44,12 @@ func main() {
 }
 
 func initializeEnvironment() {
-	err := godotenv.Load()
-	if err != nil {
-		logger.Log.Fatal("Error loading .env file")
+	godotenv.Load()
+
+	for key, defaultValue := range defaultConfig {
+		if val, exists := os.LookupEnv(key); !exists || val == "" {
+			os.Setenv(key, defaultValue)
+		}
 	}
 }
 
