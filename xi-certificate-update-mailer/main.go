@@ -9,6 +9,7 @@ import (
 	"github.com/trade-tariff/trade-tariff-lambdas-xi-certificate-update-mailer/logger"
 	"github.com/trade-tariff/trade-tariff-lambdas-xi-certificate-update-mailer/parser"
 
+	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -25,6 +26,16 @@ var defaultConfig = map[string]string{
 }
 
 func main() {
+	if os.Getenv("AWS_LAMBDA_FUNCTION_VERSION") != "" {
+		logger.Log.Info("Running in AWS Lambda environment")
+		lambda.Start(execute)
+	} else {
+		logger.Log.Info("Running in local environment")
+		execute()
+	}
+}
+
+func execute() {
 	initializeEnvironment()
 
 	sess := initializeAWSSession()
