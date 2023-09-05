@@ -1,7 +1,7 @@
 .PHONY: build clean deploy
 
 build:
-	cd xi-certificate-update-mailer && env GOARCH=amd64 GOOS=linux go build -ldflags="-s -w" -o ../bin/handler main.go
+	cd xi-certificate-update-mailer && env GOARCH=amd64 GOOS=linux go build -ldflags="-s -w" -o ../bin/handler
 
 clean:
 	rm -rf ./bin xi-certificate-update-mailer/bin
