@@ -1,0 +1,43 @@
+version: 2.1
+
+filter-not-main: &filter-not-main
+  filters:
+    branches:
+      ignore:
+        - main
+        - /^dependabot/(?!docker/).*/
+        - /^hotfix\/.+/
+
+orbs:
+  slack: circleci/slack@4.3.0
+
+jobs:
+  build:
+    docker:
+      - image: cimg/go:1.21.0
+    steps:
+      - checkout
+      - run: make build
+
+  test:
+    docker:
+      - image: cimg/go:1.21.0
+    steps:
+      - checkout
+      - run: make test
+
+workflows:
+  version: 2
+
+  deploy-to-development:
+    jobs:
+      - build
+
+      - test:
+          <<: *filter-not-main
+
+      # - deploy-dev:
+      #     requires:
+      #       - test
+      #       - build
+      #     <<: *filter-not-main
