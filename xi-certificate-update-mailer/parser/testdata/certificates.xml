@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:envelope xmlns="urn:publicid:-:DGTAXUD:TARIC:MESSAGE:1.0" xmlns:env="urn:publicid:-:DGTAXUD:GENERAL:ENVELOPE:1.0" id="23157">
+  <env:transaction id="20564034">
+    <env:app.message id="2">
+      <oub:transmission xmlns:env="urn:publicid:-:DGTAXUD:GENERAL:ENVELOPE:1.0" xmlns:oub="urn:publicid:-:DGTAXUD:TARIC:MESSAGE:1.0">
+        <oub:record>
+          <oub:transaction.id>20564034</oub:transaction.id>
+          <oub:record.code>205</oub:record.code>
+          <oub:subrecord.code>00</oub:subrecord.code>
+          <oub:record.sequence.number>1</oub:record.sequence.number>
+          <oub:update.type>3</oub:update.type>
+          <oub:certificate>
+            <oub:certificate.type.code>X</oub:certificate.type.code>
+            <oub:certificate.code>808</oub:certificate.code>
+            <oub:validity.start.date>2023-08-05</oub:validity.start.date>
+          </oub:certificate>
+        </oub:record>
+      </oub:transmission>
+    </env:app.message>
+    <env:app.message id="4">
+      <oub:transmission xmlns:env="urn:publicid:-:DGTAXUD:GENERAL:ENVELOPE:1.0" xmlns:oub="urn:publicid:-:DGTAXUD:TARIC:MESSAGE:1.0">
+        <oub:record>
+          <oub:transaction.id>20564034</oub:transaction.id>
+          <oub:record.code>205</oub:record.code>
+          <oub:subrecord.code>05</oub:subrecord.code>
+          <oub:record.sequence.number>2</oub:record.sequence.number>
+          <oub:update.type>3</oub:update.type>
+          <oub:certificate.description.period>
+            <oub:certificate.description.period.sid>4666</oub:certificate.description.period.sid>
+            <oub:certificate.type.code>X</oub:certificate.type.code>
+            <oub:certificate.code>808</oub:certificate.code>
+            <oub:validity.start.date>2023-08-05</oub:validity.start.date>
+          </oub:certificate.description.period>
+        </oub:record>
+      </oub:transmission>
+    </env:app.message>
+    <env:app.message id="17">
+      <oub:transmission xmlns:env="urn:publicid:-:DGTAXUD:GENERAL:ENVELOPE:1.0" xmlns:oub="urn:publicid:-:DGTAXUD:TARIC:MESSAGE:1.0">
+        <oub:record>
+          <oub:transaction.id>20564034</oub:transaction.id>
+          <oub:record.code>205</oub:record.code>
+          <oub:subrecord.code>10</oub:subrecord.code>
+          <oub:record.sequence.number>3</oub:record.sequence.number>
+          <oub:update.type>3</oub:update.type>
+          <oub:certificate.description>
+            <oub:certificate.description.period.sid>4666</oub:certificate.description.period.sid>
+            <oub:language.id>EN</oub:language.id>
+            <oub:certificate.type.code>X</oub:certificate.type.code>
+            <oub:certificate.code>808</oub:certificate.code>
+            <oub:description>Export authorisation by virtue of articles 1f.4a  of Regulation (EC) No 765/2006</oub:description>
+          </oub:certificate.description>
+        </oub:record>
+      </oub:transmission>
+    </env:app.message>
+  </env:transaction>
+</env:envelope>

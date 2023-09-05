@@ -1,0 +1,35 @@
+<p>Good morning,</p>
+
+<p>
+  The Northern Ireland tariff updates loaded on <b>{{.LoadedOn}}</b> contain one or more certificate changes.
+</p>
+
+{{range .CertificateChanges}}
+<p>Certificate <b>{{.FullCertificateCode}}</b> has been {{.Operation}}.</p>
+<table cellspacing="0" cellpadding="0" style="width:80%">
+  <tr>
+    <td style="min-width:20%;vertical-align:top">Certificate code:</td>
+    <td style="width:80%;vertical-align:top">{{.FullCertificateCode}}</td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">Valid from:</td>
+    <td style="vertical-align:top">{{.ValidityStartDate}}</td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">Valid to:</td>
+    <td style="vertical-align:top">{{.ValidityEndDate}}</td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">Description:</td>
+    <td style="vertical-align:top">{{.Description}}</td>
+  </tr>
+</table>
+
+<p>
+  To find out more, visit
+  https://www.trade-tariff.service.gov.uk/xi/certificate_search?type={{.CertificateTypeCode}}&code={{.CertificateCode}}
+</p>
+
+
+<hr>
+{{end}}
