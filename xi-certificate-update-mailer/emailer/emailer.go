@@ -153,9 +153,13 @@ func fetchSubject(update parser.CertificateUpdate) string {
 		logger.Log.Fatal("Error parsing subject template")
 	}
 
-	subjectTemplate.ExecuteTemplate(writer, "subject", map[string]interface{}{
+	err = subjectTemplate.ExecuteTemplate(writer, "subject", map[string]interface{}{
 		"Filename": update.Filename,
 	})
+
+	if err != nil {
+		logger.Log.Fatal("Error executing subject template")
+	}
 
 	str := writer.String()
 	str = strings.ReplaceAll(str, "\n", "")

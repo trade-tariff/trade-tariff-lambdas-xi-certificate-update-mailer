@@ -1,4 +1,4 @@
-.PHONY: build clean deploy-development deploy-staging deploy-production test
+.PHONY: build clean deploy-development deploy-staging deploy-production test lint install-linter
 
 build:
 	cd xi-certificate-update-mailer && env GOARCH=amd64 GOOS=linux go build -ldflags="-s -w" -o ../bin/handler
@@ -17,3 +17,6 @@ deploy-production: clean build
 
 test: clean build
 	cd xi-certificate-update-mailer && go test ./...
+
+lint:
+	cd xi-certificate-update-mailer && golangci-lint run

@@ -59,7 +59,13 @@ func execute(event *LambdaEvent) {
 }
 
 func initializeEnvironment() {
-	godotenv.Load()
+	if _, err := os.Stat(".env"); err == nil {
+		err := godotenv.Load()
+
+		if err != nil {
+			logger.Log.Fatal("Error loading .env file")
+		}
+	}
 
 	for key, defaultValue := range defaultConfig {
 		if val, exists := os.LookupEnv(key); !exists || val == "" {

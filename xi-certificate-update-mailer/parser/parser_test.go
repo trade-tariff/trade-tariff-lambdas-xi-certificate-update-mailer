@@ -24,6 +24,7 @@ func loadTestFile(filename string) *fetcher.XmlFile {
 }
 
 func TestParseXML_ValidCertificates(t *testing.T) {
+	setup()
 	file := loadTestFile("testdata/certificates.xml")
 
 	result := ParseXML(file)
@@ -62,6 +63,7 @@ func TestParseXML_ValidCertificates(t *testing.T) {
 }
 
 func TestParseXML_EmptyFile(t *testing.T) {
+	setup()
 	file := loadTestFile("testdata/empty.xml")
 
 	result := ParseXML(file)
@@ -70,6 +72,7 @@ func TestParseXML_EmptyFile(t *testing.T) {
 }
 
 func TestParseXML_NoCertificates(t *testing.T) {
+	setup()
 	file := loadTestFile("testdata/nocertificates.xml")
 
 	result := ParseXML(file)
