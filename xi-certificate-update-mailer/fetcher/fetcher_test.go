@@ -76,7 +76,7 @@ func TestFetchXML(t *testing.T) {
 	xmlFile := fetcher.FetchXML(mockObject)
 
 	assert.Equal(t, "path/to/file_2023-08-30.xml", xmlFile.Key)
-  assert.Equal(t, xmlFile.LoadedOn, "2023-08-30")
+	assert.Equal(t, xmlFile.LoadedOn, "2023-08-30")
 	assert.Equal(t, int64(len(xmlContent)), xmlFile.ContentLength)
 	assert.Equal(t, xmlContent, xmlFile.Content)
 }

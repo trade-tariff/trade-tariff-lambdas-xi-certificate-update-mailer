@@ -84,6 +84,7 @@ func (f *Fetcher) FetchFileObject(date string) *s3.Object {
 			"Error occurred while listing objects",
 			logger.String("bucket", f.BucketName),
 			logger.String("prefix", f.BucketPrefix),
+			logger.String("error", err.Error()),
 		)
 	}
 

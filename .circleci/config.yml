@@ -8,36 +8,69 @@ filter-not-main: &filter-not-main
         - /^dependabot/(?!docker/).*/
         - /^hotfix\/.+/
 
+filter-main: &filter-main
+  filters:
+    branches:
+      only:
+        - main
+        - /^hotfix\/.+/
+
 orbs:
+  golangci-lint: neilisaac/golangci-lint@0.0.1
+  serverless-framework: circleci/serverless-framework@2.0.1
   slack: circleci/slack@4.3.0
 
 jobs:
-  build:
+  lint:
     docker:
       - image: cimg/go:1.21.0
     steps:
       - checkout
-      - run: make build
-
+      - golangci-lint/lint
   test:
     docker:
       - image: cimg/go:1.21.0
     steps:
       - checkout
       - run: make test
+  deploy:
+    parameters:
+      stage:
+        type: string
+    docker:
+      - image: cimg/go:1.21.0
+    steps:
+      - checkout
+      - serverless-framework/setup
+      - run: make deploy-<< parameters.stage  >>
 
 workflows:
   version: 2
 
   deploy-to-development:
     jobs:
-      - build
-
+      - lint:
+          <<: *filter-not-main
       - test:
           <<: *filter-not-main
+      - deploy:
+          stage: development
+          context: trade-tariff-lambda-deployments-development
+          requires:
+            - test
+            - lint
+          <<: *filter-not-main
 
-      # - deploy-dev:
-      #     requires:
-      #       - test
-      #       - build
-      #     <<: *filter-not-main
+  deploy-to-staging:
+    jobs:
+      - deploy:
+          stage: staging
+          context: trade-tariff-lambda-deployments-staging
+          <<: *filter-main
+
+  deploy-to-production:
+    jobs:
+      - deploy:
+          stage: production
+          context: trade-tariff-lambda-deployments-production
+          <<: *filter-main
