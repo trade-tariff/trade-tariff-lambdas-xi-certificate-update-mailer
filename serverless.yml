@@ -9,8 +9,8 @@ provider:
   deploymentBucket:
     name: ${env:DEPLOYMENT_BUCKET}
   environment:
-    PERSISTENCE_BUCKET: ${env:PERSISTENCE_BUCKET}
     FROM_EMAIL: ${env:FROM_EMAIL}
+    PERSISTENCE_BUCKET: ${env:PERSISTENCE_BUCKET}
     TO_EMAILS: ${env:TO_EMAILS}
   iamRoleStatements:
     - Effect: "Allow"
