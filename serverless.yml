@@ -31,7 +31,7 @@ provider:
         - kms:GenerateDataKey
         - kms:Decrypt
       Resource:
-        - "arn:aws:kms:${self:provider.region}:${aws:accountId}:alias/s3-key"
+        - "arn:aws:kms:${self:provider.region}:${aws:accountId}:key/*"
 
 package:
   patterns:

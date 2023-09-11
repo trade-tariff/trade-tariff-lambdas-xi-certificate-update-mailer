@@ -48,6 +48,7 @@ func (f *Fetcher) FetchXML(object *s3.Object) *XmlFile {
 			"Error occurred while getting object.",
 			logger.String("object", *object.Key),
 			logger.String("bucket", f.BucketName),
+			logger.String("error", err.Error()),
 		)
 	}
 
