@@ -15,7 +15,7 @@ provider:
   iamRoleStatements:
     - Effect: "Allow"
       Action:
-        - s3:ListObjectsV2
+        - s3:ListBucket
         - s3:GetObject
       Resource:
         - "arn:aws:s3:::${env:PERSISTENCE_BUCKET}"
@@ -25,6 +25,13 @@ provider:
         - ses:SendEmail
         - ses:SendRawEmail
       Resource: "*"
+
+    - Effect: "Allow"
+      Action:
+        - kms:GenerateDataKey
+        - kms:Decrypt
+      Resource:
+        - "arn:aws:kms:${self:provider.region}:${aws:accountId}:alias/s3-key"
 
 package:
   patterns:
