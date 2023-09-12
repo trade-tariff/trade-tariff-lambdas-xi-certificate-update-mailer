@@ -30,9 +30,9 @@ func NewFetcher(s3 S3Client, bucket, prefix string) *Fetcher {
 }
 
 func (f *Fetcher) FetchXML(object *s3.Object) *XmlFile {
-	if object == nil {
+	if object == nil || object.Key == nil {
 		logger.Log.Fatal(
-			"No file found for today. Has the file been uploaded?",
+			"No file found for today",
 			logger.String("bucket", f.BucketName),
 			logger.String("prefix", f.BucketPrefix),
 		)
@@ -48,6 +48,7 @@ func (f *Fetcher) FetchXML(object *s3.Object) *XmlFile {
 			"Error occurred while getting object.",
 			logger.String("object", *object.Key),
 			logger.String("bucket", f.BucketName),
+			logger.String("error", err.Error()),
 		)
 	}
 
@@ -84,6 +85,7 @@ func (f *Fetcher) FetchFileObject(date string) *s3.Object {
 			"Error occurred while listing objects",
 			logger.String("bucket", f.BucketName),
 			logger.String("prefix", f.BucketPrefix),
+			logger.String("error", err.Error()),
 		)
 	}
 

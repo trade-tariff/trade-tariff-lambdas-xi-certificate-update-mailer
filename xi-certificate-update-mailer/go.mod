@@ -4,6 +4,7 @@ go 1.21.0
 
 require (
 	github.com/antchfx/xmlquery v1.3.17
+	github.com/aws/aws-lambda-go v1.41.0
 	github.com/aws/aws-sdk-go v1.45.2
 	github.com/joho/godotenv v1.5.1
 	github.com/stretchr/testify v1.8.1
