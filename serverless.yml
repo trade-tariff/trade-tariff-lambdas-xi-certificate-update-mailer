@@ -35,7 +35,6 @@ provider:
 
 package:
   patterns:
-    - "!./**"
     - bootstrap
 
 functions:
