@@ -40,5 +40,6 @@ package:
 
 functions:
   notifier:
+    handler: bootstrap
     events:
       - schedule: cron(0 8 * * ? *) # Run every day at 0800 UTC
