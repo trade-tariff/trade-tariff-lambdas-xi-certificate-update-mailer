@@ -6,20 +6,20 @@ import (
 )
 
 type Logger interface {
-	Info(msg string, fields ...zapcore.Field)
-	Fatal(msg string, fields ...zapcore.Field)
+    Info(msg string, fields ...zapcore.Field)
+    Fatal(msg string, fields ...zapcore.Field)
 }
 
 type zapLogger struct {
-	logger *zap.Logger
+    logger *zap.Logger
 }
 
 func (z *zapLogger) Info(msg string, fields ...zapcore.Field) {
-	z.logger.Info(msg, fields...)
+    z.logger.Info(msg, fields...)
 }
 
 func (z *zapLogger) Fatal(msg string, fields ...zapcore.Field) {
-	z.logger.Fatal(msg, fields...)
+    z.logger.Fatal(msg, fields...)
 }
 
 func String(key string, val string) zapcore.Field {

@@ -70,7 +70,7 @@ func newCertificateChange(transaction *xmlquery.Node) *CertificateChange {
 }
 
 func (c CertificateChange) FullCertificateCode() string {
-	return c.Certificate.TypeCode + c.Certificate.Code
+	return c.CertificateTypeCode() + c.CertificateCode()
 }
 
 func (c CertificateChange) ValidityStartDate() string {
